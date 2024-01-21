@@ -10,6 +10,7 @@ import com.projeto.basico.demo.entities.User;
 // Para dizer que esta classe é um controlador rest (recurso web) se usa a anotation abaixo
 
 @RestController
+// Para acessar a pagina que retorna os dados abaixo sera no dominio/users
 @RequestMapping(value = "/users")
 public class UserResource {
 	
