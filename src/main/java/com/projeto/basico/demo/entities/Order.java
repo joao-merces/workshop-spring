@@ -1,5 +1,6 @@
 package com.projeto.basico.demo.entities;
 
+import com.projeto.basico.demo.entities.enums.OrderStatus;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -17,6 +18,7 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Integer orderStatus;
     private Instant moment;
     // Vai receber uma conexão de muitos para um
     @ManyToOne
@@ -27,8 +29,9 @@ public class Order implements Serializable {
     public Order() {
     }
 
-    public Order(Long id, Instant moment, User client) {
+    public Order(Long id, OrderStatus orderStatus, Instant moment, User client) {
         this.id = id;
+        setOrderStatus(orderStatus);
         this.moment = moment;
         this.client = client;
     }
@@ -55,6 +58,14 @@ public class Order implements Serializable {
 
     public void setClient(User client) {
         this.client = client;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return OrderStatus.valueOf(orderStatus);
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus.getCode();
     }
 
     @Override
