@@ -2,9 +2,11 @@ package com.projeto.basico.demo.config;
 
 import com.projeto.basico.demo.entities.Category;
 import com.projeto.basico.demo.entities.Order;
+import com.projeto.basico.demo.entities.Product;
 import com.projeto.basico.demo.entities.enums.OrderStatus;
 import com.projeto.basico.demo.repositories.CategoryRepository;
 import com.projeto.basico.demo.repositories.OrderRepository;
+import com.projeto.basico.demo.repositories.ProductRepository;
 import com.projeto.basico.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -29,6 +31,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     // Este metodo executa todas as linhas dentro dele quando a aplicação for iniciada (necessario implementar o commandlinerunner)
     @Override
     public void run(String... args) throws Exception {
@@ -44,8 +49,14 @@ public class TestConfig implements CommandLineRunner {
         Category c2 = new Category(null, "Books");
         Category c3 = new Category(null, "Computers");
 
+        Product p1 = new Product(null,"test","test","teste");
+        Product p2 = new Product(null,"test","test","teste");
+        Product p3 = new Product(null,"test","test","teste");
+
+
         userRepository.saveAll(Arrays.asList(u1,u2));
         orderRepository.saveAll(Arrays.asList(o1,o2,o3));
         categoryRepository.saveAll(Arrays.asList(c1,c2,c3));
+        productRepository.saveAll(Arrays.asList(p1,p2,p3));
     }
 }
