@@ -19,8 +19,10 @@ public class Product implements Serializable {
     private String description;
     private String url;
 
-    // Associando um produto a uma categoria
-    @Transient
+    // Associando uma tabela muitos para muits (um produto pode ter varias categorias e uma categoria pode ter varios produtos)
+    @ManyToMany
+    // product_id é a fk da tabela
+    @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
     public Product() {
