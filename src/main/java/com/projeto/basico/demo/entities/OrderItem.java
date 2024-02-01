@@ -13,8 +13,9 @@ import java.util.Objects;
 public class OrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
     // EmbeddedId se diz a respeito de pks compostas
+    // Como é classe aux com id composto o OrderItemPk deve ser instanciado
     @EmbeddedId
-    private OrderItemPk id;
+    private OrderItemPk id = new OrderItemPk();
     private Integer quantity;
     private Double price;
 

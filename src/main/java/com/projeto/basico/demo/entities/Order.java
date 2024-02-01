@@ -5,8 +5,10 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
-
+import java.util.Set;
+import com.projeto.basico.demo.entities.OrderItem;
 /*
 * Como a relação sera de muitos para um de order para user (um usuario pode ter varios pedidos)
 * precisa-se fazer com que a variavel client vire uma fk para poder fazer o join posteriormente
@@ -25,6 +27,9 @@ public class Order implements Serializable {
     // client_id sera o nome da chave no banco
     @JoinColumn(name = "client_id")
     private User client;
+
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> items = new HashSet<>();
 
     public Order() {
     }
@@ -74,6 +79,10 @@ public class Order implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
         return Objects.equals(id, order.id);
+    }
+
+    public Set<OrderItem> getItems() {
+        return items;
     }
 
     @Override

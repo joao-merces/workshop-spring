@@ -83,6 +83,10 @@ public class Product implements Serializable {
         return Objects.equals(id, product.id);
     }
 
+    public Double getPrice() {
+        return 1.5;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(id);
